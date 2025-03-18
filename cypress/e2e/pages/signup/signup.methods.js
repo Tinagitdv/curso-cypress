@@ -1,3 +1,4 @@
+import { CommonPageMethods } from "../common-page/common-page.methods";
 import { SignupElements } from "./signup.elements";
 
 export class SignupMethods {
@@ -17,5 +18,13 @@ export class SignupMethods {
         this.insertUsername(username);
         this.insertPassword(password);
         this.clickOnSignUpButton();
+    }
+
+    static verifySignupSuccessfulMessageDisplayed() {
+        CommonPageMethods.verifyAlert('Sign up successful.');
+    }
+
+    static verifyThatThisUserAlreadyExistsMessageIsDisplayed() {
+        CommonPageMethods.verifyAlert('This user already exists.');
     }
 }

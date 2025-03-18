@@ -7,6 +7,7 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       //allureWriter(on, config);
+      video: false;
       configureAllureAdapterPlugins(on, config);
       return config;
     },

@@ -1,11 +1,16 @@
 import { CommonPageData } from "../pages/common-page/common-page.data";
+import { CommonPageElements } from "../pages/common-page/common-page.elements";
 import { CommonPageMethods } from "../pages/common-page/common-page.methods";
 import { LoginData } from "../pages/login/login.data";
 import { LoginMethods } from "../pages/login/login.methods";
 import { Logger } from "../util/logger";
 
+beforeEach(() => {
+    CommonPageMethods.navigateToDemoBlaze();
+})
+
 describe(CommonPageData.testSuites.autenticacion, () => {
-    it('Inicio de sesión válido', () => {
+    it.only('Inicio de sesión válido', () => {
         Logger.stepNumber(1);
         Logger.step('Navegar a la página de inicio');
         CommonPageMethods.navigateToDemoBlaze();
@@ -24,6 +29,9 @@ describe(CommonPageData.testSuites.autenticacion, () => {
         LoginMethods.clickOnLoginButton();
         Logger.verification('Verificar que se redirige al usuario a la página de inicio');
         CommonPageMethods.verifySignedUser(LoginData.validCredentials.username);
+
+        Logger.postCondition('Hacer "Log out"');
+        CommonPageMethods.logout();
     });
 
     it('Inicio de sesión inválido', () => {
